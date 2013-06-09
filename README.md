@@ -18,8 +18,8 @@ scripts are provided to help set a different mod time on each file, which is one
 
 * Download the data files from the SSA using the link above
 * Extract the data files somewhere Splunk can access
-** The default inputs expect to find data in /var/local/splunk/names and /var/local/splunk/namesbystate
-** But you're welcome to put the data elsewhere, and override default/inputs.conf with a local/inputs.conf pointing to the right 
+ * The default inputs expect to find data in /var/local/splunk/names and /var/local/splunk/namesbystate
+ * But you're welcome to put the data elsewhere, and override default/inputs.conf with a local/inputs.conf pointing to the right 
    directory
 * Implement some method to deal with Splunk's problems handling historical datasets, e.g. make sure each file has a different mod
   time.
