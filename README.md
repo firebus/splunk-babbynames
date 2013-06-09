@@ -36,5 +36,5 @@ Most of these require a switch to Advanced XML
 * Make the bucketing feature dynamic instead of requiring a manual toggle
 * Add regional searches (West, South, North-East, etc.)
 * Find a way to show/explore names by rank
-** Could we mimic http://dish.andrewsullivan.com/2013/06/03/names/? Maybe with D3?
+  * Could we mimic http://dish.andrewsullivan.com/2013/06/03/names/? Maybe with D3?
 * Consider showing area and sex comparisons in a single form
