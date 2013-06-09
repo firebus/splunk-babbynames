@@ -1,0 +1,11 @@
+<nav>
+  <collection label="Babby Names">
+    <view name="babbynames_area" default="true" />
+    <view name="babbynames_sex" default="true" />
+  </collection>
+  
+  <collection label="Lookup Builders">
+    <saved name="Babbynames Totals Lookup" />
+    <saved name="Babbynames Years Lookup" />
+  </collection>
+</nav>

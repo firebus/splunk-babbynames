@@ -1,0 +1,145 @@
+<form>
+  <label>Babby Names by Area</label>
+  
+  <searchTemplate>
+    index=babbynames name="$name$" $area$ sex="$sex$"
+    | append [| inputlookup babbynames_years_lookup]
+    | lookup babbynames_totals_lookup year,area OUTPUT total
+    | search year&gt;="$earliestYear$" year&lt;="$latestYear$"
+    | eval percentage = count / total * 100  
+    | chart useother=false limit=0 sum($summary$) over year $buckets$ by area
+  </searchTemplate>
+
+  <fieldset>
+     <input type="text" token="name">
+      <label>Name</label>
+      <default></default>
+      <seed>Your name here...</seed>
+      <suffix></suffix>
+    </input>
+      
+    <input type="dropdown" token="area">
+      <label>Area</label>
+      <prefix>area</prefix>
+      <default>=*</default>
+      <choice value="=*">USA and all States</choice>
+      <choice value="!=USA">All States</choice>
+      <choice value="=USA">USA</choice>
+      <choice value="=AK">AK</choice>
+      <choice value="=AL">AL</choice>
+      <choice value="=AR">AR</choice>
+      <choice value="=AZ">AZ</choice>
+      <choice value="=CA">CA</choice>
+      <choice value="=CO">CO</choice>
+      <choice value="=CT">CT</choice>
+      <choice value="=DC">DC</choice>
+      <choice value="=DE">DE</choice>
+      <choice value="=FL">FL</choice>
+      <choice value="=GA">GA</choice>
+      <choice value="=HI">HI</choice>
+      <choice value="=IA">IA</choice>
+      <choice value="=ID">ID</choice>
+      <choice value="=IL">IL</choice>
+      <choice value="=IN">IN</choice>
+      <choice value="=KS">KS</choice>
+      <choice value="=KY">KY</choice>
+      <choice value="=LA">LA</choice>
+      <choice value="=MA">MA</choice>
+      <choice value="=MD">MD</choice>
+      <choice value="=ME">ME</choice>
+      <choice value="=MI">MI</choice>
+      <choice value="=MN">MN</choice>
+      <choice value="=MO">MO</choice>
+      <choice value="=MS">MS</choice>
+      <choice value="=MT">MT</choice>
+      <choice value="=NC">NC</choice>
+      <choice value="=ND">ND</choice>
+      <choice value="=NE">NE</choice>
+      <choice value="=NH">NH</choice>
+      <choice value="=NJ">NJ</choice>
+      <choice value="=NM">NM</choice>
+      <choice value="=NV">NV</choice>
+      <choice value="=NY">NY</choice>
+      <choice value="=OH">OH</choice>
+      <choice value="=OK">OK</choice>
+      <choice value="=OR">OR</choice>
+      <choice value="=PA">PA</choice>
+      <choice value="=RI">RI</choice>
+      <choice value="=SC">SC</choice>
+      <choice value="=SD">SD</choice>
+      <choice value="=TN">TN</choice>
+      <choice value="=TX">TX</choice>
+      <choice value="=UT">UT</choice>
+      <choice value="=VA">VA</choice>
+      <choice value="=VT">VT</choice>
+      <choice value="=WA">WA</choice>
+      <choice value="=WI">WI</choice>
+      <choice value="=WV">WV</choice>
+      <choice value="=WY">WY</choice>
+    </input>
+
+    <input type="radio" token="sex">
+      <label>Sex</label>
+      <default>Any</default>
+      <choice value="*">Any</choice>
+      <choice value="M">Male</choice>
+      <choice value="F">Female</choice>
+    </input>
+
+     <input type="text" token="earliestYear">
+      <label>Earliest Year</label>
+      <default>1880</default>
+      <seed>1880</seed>
+    </input>
+
+     <input type="text" token="latestYear">
+      <label>Latest Year</label>
+      <default>3000</default>
+      <seed>2013</seed>
+    </input>
+
+    <input type="radio" token="summary">
+      <label>Summarize by</label>
+      <default>Percentage</default>
+      <choice value="percentage">Percentage</choice>
+      <choice value="count">Count</choice>
+    </input>
+
+	<input type="radio" token="buckets">
+	  <label>Bucket results?</label>
+	  <default>No, don't</default>
+	  <choice value=" ">No, don't</choice>
+	  <choice value="bins=40">Mah Bukkit!</choice>
+	</input>
+
+  </fieldset>
+
+  <row>
+    <html>
+      <p>
+		This form searches the <a href="http://www.ssa.gov/oact/babynames/limits.html">Social Security Administration baby names
+		database</a> and compares name popularity in different areas of the country.
+	  </p>
+      <p>
+		A name appears in the database if there were 5 or more births with that name in a given year.<br/>
+		The data is grouped by area (state or nation-wide), then by sex, and the 5 births rule applies to the most granular
+		grouping.<br/>
+		E.g. if there were 3 male and 3 female babies named "Tracy" in 1930 in Tennessee, there would be no data point.
+	  </p>
+	  <p>
+		Select the "Mah Bukkit!" option if you get a "too many datapoints" error - or choose a shorter time range.
+	  </p>
+    </html>
+  </row>
+
+  <row>
+    <chart>
+      <title>Names by Area</title>
+      <option name="height">200px</option>
+      <option name="charting.chart">line</option>
+      <option name="charting.chart.nullValueMode">zero</option>
+      <option name="charting.primaryAxisTitle.text">Year</option>
+      <option name="charting.secondaryAxisTitle.text">Percentage/Count</option>
+    </chart>
+  </row>
+</form>
