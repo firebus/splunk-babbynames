@@ -100,14 +100,14 @@
   <row>
     <html>
       <p>
-		This form searches the <a href="http://www.ssa.gov/oact/babynames/limits.html">Social Security Administration baby names
-		database</a> and compares name popularity by Sex.
-	  </p>
+        This form searches the <a href="http://www.ssa.gov/oact/babynames/limits.html">Social Security Administration baby names
+        database</a> and compares name popularity by Sex.
+      </p>
       <p>
-		A name appears in the database if there were 5 or more births with that name in a given year. The data is grouped by area 
-		(state or nation-wide), then by sex, and the 5 births rule applies to the most granular grouping. E.g. if there were 3 
-		male and 3 female babies named "Tracy" in 1930 in Tennessee, there would be no data point.
-	  </p>
+        A name appears in the database if there were 5 or more births with that name in a given year. The data is grouped by area 
+        (state or nation-wide), then by sex, and the 5 births rule applies to the most granular grouping. E.g. if there were 3 
+        male and 3 female babies named "Tracy" in 1930 in Tennessee, there would be no data point.
+      </p>
     </html>
   </row>
 

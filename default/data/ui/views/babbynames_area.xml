@@ -1,15 +1,6 @@
 <form>
   <label>Babby Names by Area</label>
   
-  <searchTemplate>
-    index=babbynames name="$name$" $area$ sex="$sex$"
-    | append [| inputlookup babbynames_years_lookup]
-    | lookup babbynames_totals_lookup year,area OUTPUT total
-    | search year&gt;="$earliestYear$" year&lt;="$latestYear$"
-    | eval percentage = count / total * 100  
-    | chart useother=false limit=0 sum($summary$) over year $buckets$ by area
-  </searchTemplate>
-
   <fieldset>
      <input type="text" token="name">
       <label>Name</label>
@@ -98,48 +89,66 @@
       <seed>2013</seed>
     </input>
 
-    <input type="radio" token="summary">
-      <label>Summarize by</label>
-      <default>Percentage</default>
-      <choice value="percentage">Percentage</choice>
-      <choice value="count">Count</choice>
+    <input type="radio" token="buckets">
+      <label>Bucket results?</label>
+      <default>No, don't</default>
+      <choice value=" ">No, don't</choice>
+      <choice value="bins=40">Mah Bukkit!</choice>
     </input>
-
-	<input type="radio" token="buckets">
-	  <label>Bucket results?</label>
-	  <default>No, don't</default>
-	  <choice value=" ">No, don't</choice>
-	  <choice value="bins=40">Mah Bukkit!</choice>
-	</input>
-
   </fieldset>
 
   <row>
     <html>
       <p>
-		This form searches the <a href="http://www.ssa.gov/oact/babynames/limits.html">Social Security Administration baby names
-		database</a> and compares name popularity in different areas of the country.
-	  </p>
+        This form searches the <a href="http://www.ssa.gov/oact/babynames/limits.html">Social Security Administration baby names
+        database</a> and compares name popularity in different areas of the country.
+      </p>
       <p>
-		A name appears in the database if there were 5 or more births with that name in a given year.<br/>
-		The data is grouped by area (state or nation-wide), then by sex, and the 5 births rule applies to the most granular
-		grouping.<br/>
-		E.g. if there were 3 male and 3 female babies named "Tracy" in 1930 in Tennessee, there would be no data point.
-	  </p>
-	  <p>
-		Select the "Mah Bukkit!" option if you get a "too many datapoints" error - or choose a shorter time range.
-	  </p>
+        A name appears in the database if there were 5 or more births with that name in a given year.<br/>
+        The data is grouped by area (state or nation-wide), then by sex, and the 5 births rule applies to the most granular
+        grouping.<br/>
+        E.g. if there were 3 male and 3 female babies named "Tracy" in 1930 in Tennessee, there would be no data point.
+      </p>
+      <p>
+        Select the "Mah Bukkit!" option if you get a "too many datapoints" error - or choose a shorter time range.
+      </p>
     </html>
   </row>
 
   <row>
     <chart>
-      <title>Names by Area</title>
+      <searchTemplate>
+        index=babbynames name="$name$" $area$ sex="$sex$"
+        | append [| inputlookup babbynames_years_lookup]
+        | lookup babbynames_totals_lookup year,area OUTPUT total
+        | search year&gt;="$earliestYear$" year&lt;="$latestYear$"
+        | eval percentage = count / total * 100
+        | chart useother=false limit=0 sum(percentage) over year $buckets$ by area
+      </searchTemplate>
+      <title>Name Percentage by Area</title>
       <option name="height">200px</option>
       <option name="charting.chart">line</option>
       <option name="charting.chart.nullValueMode">zero</option>
       <option name="charting.primaryAxisTitle.text">Year</option>
-      <option name="charting.secondaryAxisTitle.text">Percentage/Count</option>
+      <option name="charting.secondaryAxisTitle.text">Percentage</option>
+    </chart>
+  </row>
+
+  <row>
+    <chart>
+      <searchTemplate>
+        index=babbynames name="$name$" $area$ sex="$sex$"
+        | append [| inputlookup babbynames_years_lookup]
+        | lookup babbynames_totals_lookup year,area OUTPUT total
+        | search year&gt;="$earliestYear$" year&lt;="$latestYear$"
+        | chart useother=false limit=0 sum(count) over year $buckets$ by area
+      </searchTemplate>
+      <title>Name Count by Area</title>
+      <option name="height">200px</option>
+      <option name="charting.chart">line</option>
+      <option name="charting.chart.nullValueMode">zero</option>
+      <option name="charting.primaryAxisTitle.text">Year</option>
+      <option name="charting.secondaryAxisTitle.text">Count</option>
     </chart>
   </row>
 </form>
