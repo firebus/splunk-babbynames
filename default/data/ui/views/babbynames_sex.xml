@@ -108,6 +108,9 @@
         (state or nation-wide), then by sex, and the 5 births rule applies to the most granular grouping. E.g. if there were 3 
         male and 3 female babies named "Tracy" in 1930 in Tennessee, there would be no data point.
       </p>
+      <p>
+        This app is hosted at <a href="http://github.com/firebus/splunk-babbynames">github</a> if you want to roll your own or extend it.
+      </p>
     </html>
   </row>
 

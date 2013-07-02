@@ -112,6 +112,9 @@
       <p>
         Select the "Mah Bukkit!" option if you get a "too many datapoints" error - or choose a shorter time range.
       </p>
+      <p>
+        This app is hosted at <a href="http://github.com/firebus/splunk-babbynames">github</a> if you want to roll your own or extend it.
+      </p>
     </html>
   </row>
 
