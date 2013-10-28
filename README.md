@@ -1,7 +1,7 @@
 Babby Names app for Splunk
 ==========================
 
-This app provides some searches against the Social Security Administration baby names database which you can download at
+This app provides views and searches that explore the Social Security Administration baby names database which you can download at
 http://www.ssa.gov/oact/babynames/limits.html
 
 The database goes back to 1880 for nation-wide data, and back to 1910 for the individual states. For the nation-wide data, there's
