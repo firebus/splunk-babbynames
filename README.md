@@ -4,8 +4,9 @@ Babby Names app for Splunk
 This app provides views and searches that explore the Social Security Administration baby names database which you can download at
 http://www.ssa.gov/oact/babynames/limits.html
 
-The database goes back to 1880 for nation-wide data, and back to 1910 for the individual states. For the nation-wide data, there's
-one file for each year. For the states data, there's one file for each state that contains all the years.
+The database has data at the national level starting in 1880. Data for individual starts starts in 1910.
+For the national, there's one file for each year.
+For the states data, there's one file per state which contains all the data for that state.
 
 ## Kludges galore
 
