@@ -12,7 +12,7 @@ For the states data, there's one file per state which contains all the data for 
 
 * Splunk can't handle timestamps earlier than 1970, so _time has no meaning here. 
 * Splunk cannot handle more than 3,125,000 events with the same timestamp.
-** Since there are (many) more than this many events in the dataset, you'll need to find some way to set fake timestamps or
+  * Since there are (many) more than this many events in the dataset, you'll need to find some way to set fake timestamps or
    make sure to index slowly enough that Splunk doesn't index more than 3,125,000 events per second.
 * Some example scripts are provided to help set a different mod time on each file, which is one way to work around the problem.
 
